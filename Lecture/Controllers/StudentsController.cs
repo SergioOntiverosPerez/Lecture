@@ -2,25 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Lecture.Models;
+using Lecture.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lecture.Controllers
 {
     public class StudentsController : Controller
     {
-        public IActionResult showStudent()
-        {
-            var student = new Student()
-            {
-                Name = "Sergio",
-                Surname = "Ontiveros",
-                Email = "sergio@mail.com"
-            };
+        private readonly LectureContext _context;
 
-            
-            return View(student);
-            
+        public StudentsController(LectureContext context)
+        {
+            _context = context;
+        }
+        public IActionResult Index()
+        {
+            return View();
         }
     }
 }
