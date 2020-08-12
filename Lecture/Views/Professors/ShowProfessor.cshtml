@@ -4,5 +4,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Professor.Name</h2>
-@Model.Students
+@{ 
+    var className = Model.Students.Count > 2 ? "popular" : null;
+}
+
+
+<h2 class="@className">Prof. Dr. @Model.Professor.Name @Model.Professor.Surname</h2>
+@if( Model.Students.Count == 0)
+{
+    <text>No one has class with this professor.</text>
+}
+
+<ul>
+    @foreach (var student in Model.Students)
+    {
+        <li>@student.Name</li>
+    }
+</ul>
