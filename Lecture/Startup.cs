@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Routing.Patterns;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -45,6 +46,25 @@ namespace Lecture
             app.UseRouting();
 
             app.UseAuthorization();
+
+
+
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute(
+            //        name: "StudentsByName",
+            //        pattern: "{controller=Students}/{action=SortStudents}/{name}");
+            //});
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute(
+            //        name: "surname",
+            //        pattern: "{controller=Students}/{action=Surname}/{surname}");
+            //});
+
+            
 
             app.UseEndpoints(endpoints =>
             {
