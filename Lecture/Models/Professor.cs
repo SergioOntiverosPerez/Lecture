@@ -9,10 +9,12 @@ namespace Lecture.Models
     public class Professor
     {
         public int Id { get; set; }
+
         [Required]
         [StringLength(255)]
         [Display(Name = "Nome")]
         public string Name { get; set; }
+
         [Required]
         [StringLength(255)]
         [Display(Name = "Sobrenome")]
@@ -20,6 +22,8 @@ namespace Lecture.Models
         
         [Display(Name = "Formação")]
         public DegreeTypes Degree { get; set; }
+        
+        [Required]
         public string Email { get; set; }
 
     }
