@@ -6,6 +6,7 @@ using Lecture.Data;
 using Lecture.Models;
 using Lecture.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lecture.Controllers
 {
@@ -18,11 +19,24 @@ namespace Lecture.Controllers
             _context = context;
         }
 
-        public IActionResult ShowProfessor()
+        public async Task<IActionResult> Index()
         {
-            
+            var professors = await _context.Professors.ToListAsync();
+            return View(professors);
+        }
 
-            return View();
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var professor = await _context.Professors
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (professor == null)
+                return NotFound();
+
+            return View(professor);
         }
     }
 }

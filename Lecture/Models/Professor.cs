@@ -11,10 +11,14 @@ namespace Lecture.Models
         public int Id { get; set; }
         [Required]
         [StringLength(255)]
+        [Display(Name = "Nome")]
         public string Name { get; set; }
         [Required]
         [StringLength(255)]
+        [Display(Name = "Sobrenome")]
         public string Surname { get; set; }
+        
+        [Display(Name = "Formação")]
         public DegreeTypes Degree { get; set; }
         public string Email { get; set; }
 

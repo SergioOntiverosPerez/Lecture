@@ -1,0 +1,54 @@
+﻿@model  IEnumerable<Lecture.Models.Professor>
+@{
+    ViewBag.Title = "Professors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+<p>
+    <a asp-action="Create" class="btn btn-primary" >Create New Professor</a>
+</p>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(m => m.Name)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(m => m.Surname)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(m => m.Degree)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(m => m.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var profesor in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => profesor.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => profesor.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => profesor.Degree)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => profesor.Email)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id=" @profesor.Id" class="btn btn-secondary">Edit</a>
+                    <a asp-action="Details" asp-route-id="@profesor.Id" class="btn btn-info" >Details</a>
+                    <a asp-action="Delete" asp-route-id="@profesor.Id" class="btn btn-danger" >Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
