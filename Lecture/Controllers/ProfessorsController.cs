@@ -39,21 +39,31 @@ namespace Lecture.Controllers
             return View(professor);
         }
 
-        // GET: Professors/Edit/id
-        public IActionResult Edit(int? id)
+        // CREATE PROFESSOR
+
+        public IActionResult New()
         {
-            //if (id == null)
-            //    return NotFound();
+            return View();
+        }
 
-            //var professor = _context.Professors.FindAsync(id);
-            var professor = from prof in _context.Professors
-                            where prof.Id == id
-                            select prof;
+
+        // GET: Professors/Edit/id
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var professor = await _context.Professors.FindAsync(id);
+            //var professor = from prof in _context.Professors
+            //                where prof.Id == id
+            //                select prof;
+
+            if (professor == null)
+                return NotFound();
+
             
-            //if (professor == null)
-            //    return NotFound();
 
-            return View(professor.SingleOrDefault());
+            return View(professor);
         }
 
         // POST: Professor/Edit/id

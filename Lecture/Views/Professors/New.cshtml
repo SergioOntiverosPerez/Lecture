@@ -1,0 +1,33 @@
+﻿@model Lecture.Models.Professor
+@{
+    ViewBag.Title = "New Professor";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Create", "Professors"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Enter Professor's name" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Surname)
+        @Html.TextBoxFor(m => m.Surname, new { @class = "form-control", @placeholder = "Enter Professor's surname" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Degree)
+        <select asp-for="@Model.Degree" asp-items="Html.GetEnumSelectList<DegreeTypes>()" class="form-control">
+            <option selected="selected" value="">Please select</option>
+        </select>
+        <span asp-validation-for="@Model.Degree" class="text-danger" />
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Enter Professor's e-mail" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Birthdate)
+        @Html.TextBoxFor(m => m.Birthdate, new { @class = "form-control", @placeholder = "Enter Professor's birthdate" })
+    </div>
+}

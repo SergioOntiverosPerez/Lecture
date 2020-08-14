@@ -24,7 +24,10 @@ namespace Lecture.Models
         public DegreeTypes Degree { get; set; }
         
         [Required]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
+        [Display(Name = "Data de nascimento")]
+        public DateTime? Birthdate { get; set; }
     }
 }
