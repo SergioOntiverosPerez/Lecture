@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Lecture.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lecture.Controllers
 {
@@ -15,9 +16,20 @@ namespace Lecture.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var students = await _context.Students.ToListAsync();
+
+            return View(students);
+        }
+
+
+
+        // CREATE NEW STUDENT
+
+        public IActionResult New()
+        {
+            return View("StudentForm");
         }
     }
 }
