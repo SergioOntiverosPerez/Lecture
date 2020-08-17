@@ -4,14 +4,16 @@ using Lecture.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Lecture.Migrations
 {
     [DbContext(typeof(LectureContext))]
-    partial class LectureContextModelSnapshot : ModelSnapshot
+    [Migration("20200817194412_AddCourseToStudent")]
+    partial class AddCourseToStudent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
