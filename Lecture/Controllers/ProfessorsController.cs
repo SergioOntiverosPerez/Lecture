@@ -39,35 +39,45 @@ namespace Lecture.Controllers
             return View(professor);
         }
 
-        // CREATE PROFESSOR
-
+        // CREATE PROFESSOR 
         public IActionResult New()
         {
-            return View();
+            return View("ProfessorForm");
         }
 
 
         // GET: Professors/Edit/id
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int id)
         {
-            if (id == null)
-                return NotFound();
-
-            var professor = await _context.Professors.FindAsync(id);
-            //var professor = from prof in _context.Professors
-            //                where prof.Id == id
-            //                select prof;
-
+           
+            var professor = _context.Professors.SingleOrDefault( p => p.Id == id);
+            
             if (professor == null)
                 return NotFound();
 
-            
-
-            return View(professor);
+            return View("ProfessorForm", professor);
         }
 
-        // POST: Professor/Edit/id
-       
+        // POST: 
+        [HttpPost]
+       public IActionResult Save(Professor professor)
+        {
+            if (professor.Id == 0)
+                _context.Professors.Add(professor);
+            else
+            {
+                var professorInDb = _context.Professors.Single(p => p.Id == professor.Id);
+                professorInDb.Name = professor.Name;
+                professorInDb.Surname = professor.Surname;
+                professorInDb.Degree = professor.Degree;
+                professorInDb.Email = professor.Email;
+                professorInDb.Birthdate = professor.Birthdate;
+            }
+                
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Professors");
+        }
         
     }
 }
