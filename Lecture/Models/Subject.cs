@@ -5,9 +5,14 @@ using System.Threading.Tasks;
 
 namespace Lecture.Models
 {
-    public class Program
+    public class Subject
     {
         public int Id { get; set; }
+
+        public int SubjectCode { get; set; }
+
         public string Name { get; set; }
+
+
     }
 }
