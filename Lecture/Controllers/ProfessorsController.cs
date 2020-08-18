@@ -62,6 +62,11 @@ namespace Lecture.Controllers
         [HttpPost]
        public IActionResult Save(Professor professor)
         {
+            if(!ModelState.IsValid)
+            {
+                return View("ProfessorForm", professor);
+            }
+
             if (professor.Id == 0)
                 _context.Professors.Add(professor);
             else
