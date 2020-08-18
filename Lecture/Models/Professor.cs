@@ -12,22 +12,22 @@ namespace Lecture.Models
 
         [Required]
         [StringLength(255)]
-        [Display(Name = "Nome")]
+        [Display(Name = "Nome do Professor")]
         public string Name { get; set; }
 
         [Required]
         [StringLength(255)]
-        [Display(Name = "Sobrenome")]
+        [Display(Name = "Sobrenome do Professor")]
         public string Surname { get; set; }
         
-        [Display(Name = "Formação")]
+        [Display(Name = "Formação do Professor")]
         public DegreeTypes Degree { get; set; }
         
         [Required]
-        [Display(Name = "E-mail")]
+        [Display(Name = "E-mail do Professor")]
         public string Email { get; set; }
 
-        [Display(Name = "Data de nascimento")]
+        [Display(Name = "Data de nascimento do Professor")]
         public DateTime? Birthdate { get; set; }
     }
 }
