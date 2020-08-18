@@ -72,6 +72,17 @@ namespace Lecture.Controllers
         [HttpPost]
         public IActionResult Save(Student student)
         {
+            if(!ModelState.IsValid)
+            {
+                var studentModel = new NewStudentViewModel
+                {
+                    Student = student,
+                    Courses = _context.Courses.ToList()
+                };
+
+                return View("StudentForm", studentModel);
+            }
+
             if (student.Id == 0)
                 _context.Students.Add(student);
             else

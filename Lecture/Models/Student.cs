@@ -10,30 +10,30 @@ namespace Lecture.Models
     {
         public int Id { get; set; }
 
-        [Required]
-        [Display(Name = "Código")]
+        [Required(ErrorMessage ="Please enter student's code")]
+        [Display(Name = "Code")]
         public int StudentCode { get; set; }
 
 
-        [Required]
+        [Required(ErrorMessage ="Please enter student's name")]
         [StringLength(255)]
-        [Display(Name = "Nome")]
+        [Display(Name = "Name")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Please enter student's surname")]
         [StringLength(255)]
-        [Display(Name = "Sobrenome")]
+        [Display(Name = "Surname")]
         public string Surname { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Please enter student's e-mail")]
         [Display(Name = "E-mail")]
         public string Email { get; set; }
 
         
         public Course Course { get; set; }
 
-        [Display(Name = "Curso")]
-        [Required]
+        [Display(Name = "Course")]
+        [Required(ErrorMessage ="Please select student's course")]
         public int CourseId { get; set; }
 
     }

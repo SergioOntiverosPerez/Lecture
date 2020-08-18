@@ -10,24 +10,25 @@ namespace Lecture.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter professor's name")]
         [StringLength(255)]
-        [Display(Name = "Nome do Professor")]
+        [Display(Name = "Professor's name")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter professor's surname")]
         [StringLength(255)]
-        [Display(Name = "Sobrenome do Professor")]
+        [Display(Name = "Professor's surname")]
         public string Surname { get; set; }
-        
-        [Display(Name = "Formação do Professor")]
+
+        [Required(ErrorMessage = "Please enter professor's degree")]
+        [Display(Name = "Professor's degree")]
         public DegreeTypes Degree { get; set; }
         
-        [Required]
-        [Display(Name = "E-mail do Professor")]
+        [Required(ErrorMessage ="Please enter professor's e-mail")]
+        [Display(Name = "Professor's e-mail")]
         public string Email { get; set; }
 
-        [Display(Name = "Data de nascimento do Professor")]
+        [Display(Name = "Professor's birthdate")]
         public DateTime? Birthdate { get; set; }
     }
 }
