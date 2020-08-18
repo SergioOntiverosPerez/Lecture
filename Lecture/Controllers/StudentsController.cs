@@ -21,7 +21,7 @@ namespace Lecture.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var students = await _context.Students.ToListAsync();
+            var students = await _context.Students.Include(s => s.Course).ToListAsync();
             return View(students);
         }
 
@@ -30,7 +30,7 @@ namespace Lecture.Controllers
             if (id == null)
                 return NotFound();
 
-            var student = await _context.Students.FirstOrDefaultAsync(s => s.Id == id);
+            var student = await _context.Students.Include(s => s.Course).FirstOrDefaultAsync(s => s.Id == id);
 
             if (student == null)
                 return NotFound();
@@ -46,7 +46,13 @@ namespace Lecture.Controllers
             if (student == null)
                 return NotFound();
 
-            return View("StudentForm", student);
+            var viewModel = new NewStudentViewModel
+            {
+                Student = student,
+                Courses = _context.Courses.ToList()
+            };
+
+            return View("StudentForm", viewModel);
         }
 
         // CREATE NEW STUDENT

@@ -33,6 +33,7 @@ namespace Lecture.Models
         public Course Course { get; set; }
 
         [Display(Name = "Curso")]
+        [Required]
         public int CourseId { get; set; }
 
     }

@@ -48,7 +48,7 @@
                     @Html.DisplayFor(m => student.Email)
                 </td>
                 <td>
-                    @Html.DisplayFor(m => student.Course)
+                    @Html.DisplayFor(m => student.Course.Name)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@student.Id" class="btn btn-secondary">Edit</a>
