@@ -66,7 +66,8 @@ namespace Lecture.Controllers
         }
 
         // POST: 
-        [HttpPost]
+       [HttpPost]
+       [ValidateAntiForgeryToken]
        public IActionResult Save(Professor professor)
         {
             if(!ModelState.IsValid)

@@ -33,7 +33,7 @@ namespace Lecture.Models
         public Course Course { get; set; }
 
         [Display(Name = "Course")]
-        [Required(ErrorMessage ="Please select student's course")]
+        [Required(ErrorMessage ="Please select a course")]
         public int CourseId { get; set; }
 
     }

@@ -70,6 +70,7 @@ namespace Lecture.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Save(Student student)
         {
             if(!ModelState.IsValid)
