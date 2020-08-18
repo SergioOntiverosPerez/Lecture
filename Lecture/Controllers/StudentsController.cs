@@ -30,7 +30,7 @@ namespace Lecture.Controllers
             if (id == null)
                 return NotFound();
 
-            var student = await _context.Students.Include(s => s.Course).FirstOrDefaultAsync(s => s.Id == id);
+            var student = await _context.Students.Include(s => s.Course).SingleOrDefaultAsync(s => s.Id == id);
 
             if (student == null)
                 return NotFound();
