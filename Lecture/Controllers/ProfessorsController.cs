@@ -42,7 +42,9 @@ namespace Lecture.Controllers
         // CREATE PROFESSOR 
         public IActionResult New()
         {
-            return View("ProfessorForm");
+            var professorModel = new ProfessorViewModel();
+           
+            return View("ProfessorForm", professorModel);
         }
 
 
@@ -55,7 +57,12 @@ namespace Lecture.Controllers
             if (professor == null)
                 return NotFound();
 
-            return View("ProfessorForm", professor);
+            var professorModel = new ProfessorViewModel
+            {
+                Professor = professor
+            };
+
+            return View("ProfessorForm", professorModel);
         }
 
         // POST: 
@@ -64,7 +71,11 @@ namespace Lecture.Controllers
         {
             if(!ModelState.IsValid)
             {
-                return View("ProfessorForm", professor);
+                var professorModel = new ProfessorViewModel
+                {
+                    Professor = professor
+                };
+                return View("ProfessorForm", professorModel);
             }
 
             if (professor.Id == 0)
