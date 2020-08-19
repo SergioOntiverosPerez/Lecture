@@ -34,6 +34,12 @@
         <dt class="col-sm-10">
             @Html.DisplayFor(m => m.Email)
         </dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(m => m.Birthdate)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayFor(m => m.Birthdate, "{0:d MMM yyyy}")
+        </dt>
     </dl>
 </div>
 <div>

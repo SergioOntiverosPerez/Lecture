@@ -42,7 +42,10 @@ namespace Lecture.Controllers
         // CREATE PROFESSOR 
         public IActionResult New()
         {
-            var professorModel = new ProfessorViewModel();
+            var professorModel = new ProfessorViewModel
+            {
+                Professor = new Professor()
+            };
            
             return View("ProfessorForm", professorModel);
         }
