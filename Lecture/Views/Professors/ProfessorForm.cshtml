@@ -9,34 +9,39 @@
 @using (Html.BeginForm("Save", "Professors"))
 {
     <div class="form-group">
-        @Html.LabelFor(m => m.Professor.Name)
-        @Html.TextBoxFor(m => m.Professor.Name, new { @class = "form-control", @placeholder = "Enter Professor's name" })
-        @Html.ValidationMessageFor(m => m.Professor.Name)
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Enter Professor's name" })
+        @Html.ValidationMessageFor(m => m.Name)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Professor.Surname)
-        @Html.TextBoxFor(m => m.Professor.Surname, new { @class = "form-control", @placeholder = "Enter Professor's surname" })
-        @Html.ValidationMessageFor(m=>m.Professor.Surname)
+        @Html.LabelFor(m => m.Surname)
+        @Html.TextBoxFor(m => m.Surname, new { @class = "form-control", @placeholder = "Enter Professor's surname" })
+        @Html.ValidationMessageFor(m=>m.Surname)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Professor.Degree)
-        <select asp-for="@Model.Professor.Degree" asp-items="Html.GetEnumSelectList<DegreeTypes>()" class="form-control">
+        @Html.LabelFor(m => m.Degree)
+        <select asp-for="@Model.Degree" asp-items="Html.GetEnumSelectList<DegreeTypes>()" class="form-control">
             <option selected="selected" value="">Please select</option>
         </select>
-        <span asp-validation-for="@Model.Professor.Degree" class="text-danger" />
+        <span asp-validation-for="@Model.Degree" class="text-danger" />
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Professor.Email)
-        @Html.TextBoxFor(m => m.Professor.Email, new { @class = "form-control", @placeholder = "Enter Professor's e-mail" })
-        @Html.ValidationMessageFor(m => m.Professor.Email)
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Enter Professor's e-mail" })
+        @Html.ValidationMessageFor(m => m.Email)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Professor.Birthdate)
-        @Html.TextBoxFor(m => m.Professor.Birthdate, "{0:d MMM yyyy}", new { @class = "form-control", @placeholder = "Ex: 01 Jan 1980" })
+        @Html.LabelFor(m => m.Birthdate)
+        @Html.TextBoxFor(m => m.Birthdate, "{0:d MM yyyy}", new { @class = "form-control", @placeholder = "Ex: 01 Jan 1980" })
     </div>
 
-    @Html.HiddenFor(m => m.Professor.Id);
+    @Html.HiddenFor(m => m.Id);
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
     <a asp-action="Index" class="btn btn-info">Back to List</a>
 }
+
+@*@section Scripts
+{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+}*@

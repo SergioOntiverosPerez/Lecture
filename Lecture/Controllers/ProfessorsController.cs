@@ -19,10 +19,15 @@ namespace Lecture.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var professors = await _context.Professors.ToListAsync();
-            return View(professors);
+            var professor = from p in _context.Professors
+                            select p;
+
+            if (!String.IsNullOrEmpty(searchString))
+                professor = professor.Where(s => s.Name.Contains(searchString));
+
+            return View(await professor.ToListAsync());
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -42,11 +47,8 @@ namespace Lecture.Controllers
         // CREATE PROFESSOR 
         public IActionResult New()
         {
-            var professorModel = new ProfessorViewModel
-            {
-                Professor = new Professor()
-            };
-           
+            var professorModel = new ProfessorViewModel();
+
             return View("ProfessorForm", professorModel);
         }
 
@@ -60,11 +62,8 @@ namespace Lecture.Controllers
             if (professor == null)
                 return NotFound();
 
-            var professorModel = new ProfessorViewModel
-            {
-                Professor = professor
-            };
-
+            var professorModel = new ProfessorViewModel(professor);
+            
             return View("ProfessorForm", professorModel);
         }
 
@@ -75,10 +74,8 @@ namespace Lecture.Controllers
         {
             if(!ModelState.IsValid)
             {
-                var professorModel = new ProfessorViewModel
-                {
-                    Professor = professor
-                };
+                var professorModel = new ProfessorViewModel(professor);
+
                 return View("ProfessorForm", professorModel);
             }
 
