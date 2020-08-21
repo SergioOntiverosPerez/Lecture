@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Lecture.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +31,7 @@ namespace Lecture
 
             services.AddDbContext<LectureContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("LectureContext")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +49,7 @@ namespace Lecture
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseDefaultFiles();
 
             app.UseRouting();
 
