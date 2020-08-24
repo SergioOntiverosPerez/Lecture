@@ -17,33 +17,33 @@ namespace Lecture.Models
                     DbContextOptions<LectureContext>>()))
             {
 
-                if (context.Professors.Any())
-                {
-                    return; // DB has been seeded
-                }
-                context.Professors.AddRange(
-                    new Professor
-                    {
-                        Name = "Sergio",
-                        Surname = "Ontiveros-Pérez",
-                        Degree = DegreeTypes.PhD,
-                        Email = "sergio.perez@fsg.edu.br"
-                    },
-                    new Professor
-                    {
-                        Name = "Jeferson",
-                        Surname = "Diehl de Oliveira",
-                        Degree = DegreeTypes.PhD,
-                        Email = "jeferson.oliveira"
-                    },
-                    new Professor
-                    {
-                        Name = "Bruna",
-                        Surname = "Brenner",
-                        Degree = DegreeTypes.Master,
-                        Email = "bruna.brenner@fsg.edu.br"
-                    }
-                 );
+                //if (context.Professors.Any())
+                //{
+                //    return; // DB has been seeded
+                //}
+                //context.Professors.AddRange(
+                //    new Professor
+                //    {
+                //        Name = "Sergio",
+                //        Surname = "Ontiveros-Pérez",
+                //        Degree = DegreeTypes.PhD,
+                //        Email = "sergio.perez@fsg.edu.br"
+                //    },
+                //    new Professor
+                //    {
+                //        Name = "Jeferson",
+                //        Surname = "Diehl de Oliveira",
+                //        Degree = DegreeTypes.PhD,
+                //        Email = "jeferson.oliveira"
+                //    },
+                //    new Professor
+                //    {
+                //        Name = "Bruna",
+                //        Surname = "Brenner",
+                //        Degree = DegreeTypes.Master,
+                //        Email = "bruna.brenner@fsg.edu.br"
+                //    }
+                // );
 
 
                 //// Look for any course
@@ -74,7 +74,25 @@ namespace Lecture.Models
                 //        Name = "Industrial Engineering"
                 //    }
                 //);
-                context.SaveChanges();
+
+                //if (context.Subjects.Any())
+                //    return; // Db has been seeded
+
+                //context.Subjects.AddRange(
+                //    new Subject
+                //    {
+                //        SubjectCode = 3172,
+                //        Name = "Technical Design"
+                //    },
+                //    new Subject
+                //    {
+                //        SubjectCode = 3167,
+                //        Name = "Applied Informatics"
+                //    }
+
+                //    );
+
+                //context.SaveChanges();
             }
         }
     }
