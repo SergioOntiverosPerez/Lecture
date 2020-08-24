@@ -19,6 +19,11 @@ namespace Lecture.Controllers
             _context = context;
         }
 
+        public IActionResult Index1()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Index(string searchString)
         {
             var professor = from p in _context.Professors

@@ -1,4 +1,4 @@
-﻿@model  IEnumerable<Lecture.Models.Professor>
+﻿@model IEnumerable<Lecture.Models.Professor>
 @{
     ViewBag.Title = "Professors";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,13 +11,13 @@
 
 <form asp-controller="Professors" asp-action="Index" method="get">
     <p>
-        <input type="text" name="SearchString" placeholder="Search by name" class="form-control-sm"/>
-        <input type="submit" value="Filter" class="btn btn-info"/>
+        <input type="text" name="SearchString" placeholder="Search by name" class="form-control-sm" />
+        <input type="submit" value="Filter" class="btn btn-info" />
     </p>
 </form>
 
 
-<table class="table table-hover">
+<table id="professors" class="table table-hover">
     <thead>
         <tr>
             <th scope="col">
@@ -32,6 +32,8 @@
             <th scope="col">
                 @Html.DisplayNameFor(m => m.Email)
             </th>
+            <th scope="col"></th>
+            <th scope="col"></th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -53,10 +55,52 @@
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id=" @profesor.Id" class="btn btn-secondary">Edit</a>
-                    <a asp-action="Details" asp-route-id="@profesor.Id" class="btn btn-info" >Details</a>
-                    <a asp-action="Delete" asp-route-id="@profesor.Id" class="btn btn-danger" >Delete</a>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@profesor.Id" class="btn btn-info">Details</a>
+                </td>
+                <td>
+                    <button data-professor-id="@profesor.Id" class="btn btn-danger js-delete">Delete</button>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+@section Scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#professors").on("click", ".js-delete", function () {
+                var buttonDelete = $(this);
+                swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover the professor's information!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then(
+                    (willDelete) => {
+                        if (willDelete) {
+                            swal("Your professor's information has been deleted", {
+                                icon: "success",
+                            }).then(function () {
+                                $.ajax({
+                                    url: "/api/professors/" + buttonDelete.attr("data-professor-id"),
+                                    method: "DELETE",
+                                    success: function () {
+                                        buttonDelete.parents("tr").remove();
+                                    }
+                                });
+                            });
+                        } else {
+                            swal("Your professor's information is safe!");
+                        }
+                    });
+            });
+        });
+
+
+        
+    </script>
+}
