@@ -4,14 +4,16 @@ using Lecture.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Lecture.Migrations
 {
     [DbContext(typeof(LectureContext))]
-    partial class LectureContextModelSnapshot : ModelSnapshot
+    [Migration("20200825135030_CreateGroups")]
+    partial class CreateGroups
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,41 +34,6 @@ namespace Lecture.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Courses");
-                });
-
-            modelBuilder.Entity("Lecture.Models.Evaluation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<byte>("GroupId")
-                        .HasColumnType("tinyint");
-
-                    b.Property<int?>("GroupId1")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("Score")
-                        .HasColumnType("real");
-
-                    b.Property<byte>("StudentId")
-                        .HasColumnType("tinyint");
-
-                    b.Property<int?>("StudentId1")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GroupId1");
-
-                    b.HasIndex("StudentId1");
-
-                    b.ToTable("Evaluations");
                 });
 
             modelBuilder.Entity("Lecture.Models.Group", b =>
@@ -188,17 +155,6 @@ namespace Lecture.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Subjects");
-                });
-
-            modelBuilder.Entity("Lecture.Models.Evaluation", b =>
-                {
-                    b.HasOne("Lecture.Models.Group", "Group")
-                        .WithMany()
-                        .HasForeignKey("GroupId1");
-
-                    b.HasOne("Lecture.Models.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentId1");
                 });
 
             modelBuilder.Entity("Lecture.Models.Group", b =>

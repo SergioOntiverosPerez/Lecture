@@ -22,5 +22,9 @@ namespace Lecture.Data
 
         public DbSet<Subject> Subjects { get; set; }
 
+        public DbSet<Group> Groups { get; set; }
+
+        public DbSet<Evaluation> Evaluations { get; set; }
+
     }
 }
