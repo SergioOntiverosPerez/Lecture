@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Lecture.Models.Subject>
+
+@{
+    ViewBag.Title = "Subjects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    <a asp-action="New" class="btn btn-primary">Create New Subject</a>
+</p>
+
+<form asp-controller="Subjects" aso-action="Index">
+    <p>
+        <input type="text" name="searchString" placeholder="Search by name " class="form-control-sm" />
+        <input type="submit" value="Filter" class="btn btn-info"/>
+    </p>
+</form>
+
+<table id="subjects" class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(m => m.SubjectCode)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(m => m.Name)
+            </th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var subject in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => subject.SubjectCode)
+            </td>
+            <td>
+                @Html.DisplayFor(m => subject.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id=" @subject.Id" class="btn btn-secondary">Edit</a>
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@subject.Id" class="btn btn-info">Details</a>
+            </td>
+            <td>
+                <button data-subject-id="@subject.Id" class="btn btn-danger js-delete">Delete</button>
+            </td>
+        </tr>
+        }
+    </tbody>
+    
+</table>
