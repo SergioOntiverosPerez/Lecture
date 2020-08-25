@@ -22,12 +22,12 @@ namespace Lecture.Models
 
         [Required]
         [Display (Name = "Group")]
-        public byte GroupId { get; set; }
+        public int GroupId { get; set; }
 
         public Student Student { get; set; }
 
         [Required]
         [Display (Name = "Student")]
-        public byte StudentId { get; set; }
+        public int StudentId { get; set; }
     }
 }

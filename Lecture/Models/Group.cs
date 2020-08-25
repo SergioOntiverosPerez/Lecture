@@ -22,15 +22,15 @@ namespace Lecture.Models
 
         [Required]
         [Display(Name = "Subject")]
-        public byte SubjectId { get; set; }
+        public int SubjectId { get; set; }
 
         public Professor Professor { get; set; }
 
         [Required]
         [Display(Name = "Professor")]
-        public byte ProfessorId { get; set; }
+        public int ProfessorId { get; set; }
 
-
+        public DateTime DateAdded { get; set; }
 
     }
 }

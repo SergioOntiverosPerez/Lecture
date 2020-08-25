@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Lecture.Models.Group>
+
+@{
+    ViewBag.Title = "Groups";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    <a asp-action="New" class="btn btn-primary">Create a new group</a>
+</p>
+
+<form asp-controller="Groups" asp-action="Index">
+    <p>
+        <input type="text" name="searchString" placeholder="Search by name" class="form-control-sm" />
+        <input type="submit" value="Filter" class="btn btn-info"/>
+    </p>
+</form>
+
+<table id="groups" class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(m => m.GroupCode)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(m => m.Name)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(m => m.SubjectId)
+            </th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var group in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor( m => group.GroupCode)
+                </td>
+                <td>
+                    @Html.DisplayFor( m => group.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => group.Subject.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@group.Id" class="btn btn-secondary">Edit</a>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@group.Id" class="btn btn-info">Details</a>
+                </td>
+                <td>
+                    <button data-group-id="@group.Id" class="btn btn-danger js-delete">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

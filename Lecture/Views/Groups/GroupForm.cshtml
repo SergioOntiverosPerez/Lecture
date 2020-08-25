@@ -1,0 +1,35 @@
+﻿@model Lecture.ViewModels.GroupViewModel
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Title</h2>
+
+@using (Html.BeginForm("Save", "Groups"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.GroupCode)
+        @Html.TextBoxFor( m => m.GroupCode, new { @class="form-control" })
+        @Html.ValidationMessageFor(m => m.GroupCode)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class="form-control", @placeholder="Enter group's name"})
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor( m => m.SubjectId)
+        @Html.DropDownListFor( m => m.SubjectId, new SelectList(Model.Subjects, "Id", "Name"), "Select Subject", new { @class="form-control"})
+        @Html.ValidationMessageFor(m => m.SubjectId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ProfessorId)
+        @Html.DropDownListFor( m => m.ProfessorId, new SelectList(Model.Professors, "Id", "Name"), "Select Professor", new { @class="form-control"})
+        @Html.ValidationMessageFor(m => m.ProfessorId)
+    </div>
+    @Html.HiddenFor(m => m.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-info">Back to Group's List</a>
+}

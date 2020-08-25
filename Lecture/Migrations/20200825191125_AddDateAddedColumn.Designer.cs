@@ -4,14 +4,16 @@ using Lecture.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Lecture.Migrations
 {
     [DbContext(typeof(LectureContext))]
-    partial class LectureContextModelSnapshot : ModelSnapshot
+    [Migration("20200825191125_AddDateAddedColumn")]
+    partial class AddDateAddedColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,7 +43,10 @@ namespace Lecture.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("GroupId")
+                    b.Property<byte>("GroupId")
+                        .HasColumnType("tinyint");
+
+                    b.Property<int?>("GroupId1")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -51,14 +56,17 @@ namespace Lecture.Migrations
                     b.Property<float>("Score")
                         .HasColumnType("real");
 
-                    b.Property<int>("StudentId")
+                    b.Property<byte>("StudentId")
+                        .HasColumnType("tinyint");
+
+                    b.Property<int?>("StudentId1")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GroupId");
+                    b.HasIndex("GroupId1");
 
-                    b.HasIndex("StudentId");
+                    b.HasIndex("StudentId1");
 
                     b.ToTable("Evaluations");
                 });
@@ -80,17 +88,23 @@ namespace Lecture.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProfessorId")
+                    b.Property<byte>("ProfessorId")
+                        .HasColumnType("tinyint");
+
+                    b.Property<int?>("ProfessorId1")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubjectId")
+                    b.Property<byte>("SubjectId")
+                        .HasColumnType("tinyint");
+
+                    b.Property<int?>("SubjectId1")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProfessorId");
+                    b.HasIndex("ProfessorId1");
 
-                    b.HasIndex("SubjectId");
+                    b.HasIndex("SubjectId1");
 
                     b.ToTable("Groups");
                 });
@@ -185,30 +199,22 @@ namespace Lecture.Migrations
                 {
                     b.HasOne("Lecture.Models.Group", "Group")
                         .WithMany()
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GroupId1");
 
                     b.HasOne("Lecture.Models.Student", "Student")
                         .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("StudentId1");
                 });
 
             modelBuilder.Entity("Lecture.Models.Group", b =>
                 {
                     b.HasOne("Lecture.Models.Professor", "Professor")
                         .WithMany()
-                        .HasForeignKey("ProfessorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProfessorId1");
 
                     b.HasOne("Lecture.Models.Subject", "Subject")
                         .WithMany()
-                        .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SubjectId1");
                 });
 
             modelBuilder.Entity("Lecture.Models.Student", b =>
