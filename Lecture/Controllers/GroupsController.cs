@@ -21,9 +21,6 @@ namespace Lecture.Controllers
 
         public async Task<IActionResult> Index(string searchString)
         {
-            //var groups = await _context.Groups.Include(g => g.Subject).ToListAsync();
-
-            //return View(groups);
             var groups = from g in _context.Groups.Include(g => g.Subject)
                          select g;
 

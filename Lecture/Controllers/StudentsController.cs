@@ -19,10 +19,15 @@ namespace Lecture.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var students = await _context.Students.Include(s => s.Course).ToListAsync();
-            return View(students);
+            var students = from s in _context.Students.Include(s => s.Course)
+                           select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+                students = students.Where(s => s.Name.Contains(searchString));
+
+            return View(await students.ToListAsync());
         }
 
         public async Task<IActionResult> Details(int? id)
