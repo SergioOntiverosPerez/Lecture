@@ -25,7 +25,7 @@ namespace Lecture.Controllers.Api
 
         public async Task<ActionResult<IEnumerable<Student>>> GetStudents()
         {
-            return await _context.Students.ToListAsync();
+            return await _context.Students.Include(s => s.Course).ToListAsync();
         }
 
 

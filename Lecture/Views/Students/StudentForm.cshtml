@@ -1,4 +1,4 @@
-﻿@model Lecture.ViewModels.NewStudentViewModel
+﻿@model Lecture.ViewModels.StudentViewModel
 @{
     ViewBag.Title = @Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,33 +10,38 @@
 {
 
     <div class="form-group">
-        @Html.LabelFor(m => m.Student.StudentCode)
-        @Html.TextBoxFor(m => m.Student.StudentCode, new { @class = "form-control", @placeholder = "Enter student's code" })
-        
+        @Html.LabelFor(m => m.StudentCode)
+        @Html.TextBoxFor(m => m.StudentCode, new { @class = "form-control", @placeholder = "Enter student's code" })
+
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Student.Name)
-        @Html.TextBoxFor(m => m.Student.Name, new { @class = "form-control", @placeholder = "Enter student's name" })
-        @Html.ValidationMessageFor(m => m.Student.Name)
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Enter student's name" })
+        @Html.ValidationMessageFor(m => m.Name)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Student.Surname)
-        @Html.TextBoxFor(m => m.Student.Surname, new { @class = "form-control", @placeholder = "Enter student's surname" })
-        @Html.ValidationMessageFor(m => m.Student.Surname)
+        @Html.LabelFor(m => m.Surname)
+        @Html.TextBoxFor(m => m.Surname, new { @class = "form-control", @placeholder = "Enter student's surname" })
+        @Html.ValidationMessageFor(m => m.Surname)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Student.Email)
-        @Html.TextBoxFor(m => m.Student.Email, new { @class = "form-control", @placeholder = "Enter student's e-mail" })
-        @Html.ValidationMessageFor(m => m.Student.Email)
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Enter student's e-mail" })
+        @Html.ValidationMessageFor(m => m.Email)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Student.CourseId)
-        @Html.DropDownListFor(m => m.Student.CourseId, new SelectList(Model.Courses, "Id", "Name"), "Select Course", new { @class = "form-control" })
-        
+        @Html.LabelFor(m => m.CourseId)
+        @Html.DropDownListFor(m => m.CourseId, new SelectList(Model.Courses, "Id", "Name"), "Select Course", new { @class = "form-control" })
+
     </div>
 
-    @Html.HiddenFor(m => m.Student.Id)
+    @Html.HiddenFor(m => m.Id)
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
-    <a asp-action="Index" class="btn btn-info">Back to List</a>
+    <a asp-action="List" class="btn btn-info">Back to List</a>
+}
+
+@section Scripts
+{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 }

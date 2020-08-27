@@ -19,16 +19,21 @@ namespace Lecture.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(string searchString)
+        public IActionResult List()
         {
-            var students = from s in _context.Students.Include(s => s.Course)
-                           select s;
-
-            if (!String.IsNullOrEmpty(searchString))
-                students = students.Where(s => s.Name.Contains(searchString));
-
-            return View(await students.ToListAsync());
+            return View();
         }
+
+        //public async Task<IActionResult> Index(string searchString)
+        //{
+        //    var students = from s in _context.Students.Include(s => s.Course)
+        //                   select s;
+
+        //    if (!String.IsNullOrEmpty(searchString))
+        //        students = students.Where(s => s.Name.Contains(searchString));
+
+        //    return View(await students.ToListAsync());
+        //}
 
         public async Task<IActionResult> Details(int? id)
         {
@@ -51,9 +56,8 @@ namespace Lecture.Controllers
             if (student == null)
                 return NotFound();
 
-            var viewModel = new NewStudentViewModel
+            var viewModel = new StudentViewModel(student)
             {
-                Student = student,
                 Courses = _context.Courses.ToList()
             };
 
@@ -66,7 +70,7 @@ namespace Lecture.Controllers
         {
             var courses = _context.Courses.ToList();
 
-            var studentModel = new NewStudentViewModel
+            var studentModel = new StudentViewModel
             {
                 Courses = courses
             };
@@ -80,9 +84,8 @@ namespace Lecture.Controllers
         {
             if(!ModelState.IsValid)
             {
-                var studentModel = new NewStudentViewModel
+                var studentModel = new StudentViewModel(student)
                 {
-                    Student = student,
                     Courses = _context.Courses.ToList()
                 };
 
@@ -104,7 +107,7 @@ namespace Lecture.Controllers
             _context.SaveChanges();
 
 
-            return RedirectToAction("Index","Students");
+            return RedirectToAction("List","Students");
         }
     }
 }
