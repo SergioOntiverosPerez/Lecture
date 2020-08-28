@@ -15,14 +15,9 @@
 
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Name)
-        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Enter student's name" })
-        @Html.ValidationMessageFor(m => m.Name)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Surname)
-        @Html.TextBoxFor(m => m.Surname, new { @class = "form-control", @placeholder = "Enter student's surname" })
-        @Html.ValidationMessageFor(m => m.Surname)
+        @Html.LabelFor(m => m.StudentName)
+        @Html.TextBoxFor(m => m.StudentName, new { @class = "form-control", @placeholder = "Enter student's name" })
+        @Html.ValidationMessageFor(m => m.StudentName)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Email)
@@ -31,7 +26,7 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.CourseId)
-        @Html.DropDownListFor(m => m.CourseId, new SelectList(Model.Courses, "Id", "Name"), "Select Course", new { @class = "form-control" })
+        @Html.DropDownListFor(m => m.CourseId, new SelectList(Model.Courses, "Id", "StudentName"), "Select Course", new { @class = "form-control" })
 
     </div>
 

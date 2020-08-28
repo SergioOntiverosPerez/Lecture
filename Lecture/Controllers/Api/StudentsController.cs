@@ -54,8 +54,7 @@ namespace Lecture.Controllers.Api
             _context.Entry(student).State = EntityState.Modified;
 
             studentInDb.StudentCode = student.StudentCode;
-            studentInDb.Name = student.Name;
-            studentInDb.Surname = student.Surname;
+            studentInDb.StudentName = student.StudentName;
             studentInDb.CourseId = student.CourseId;
             studentInDb.Email = student.Email;
 

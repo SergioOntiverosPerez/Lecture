@@ -1,0 +1,42 @@
+﻿@model Lecture.ViewModels.EvaluationViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Title</h2>
+
+
+
+@using (Html.BeginForm("Save", "Evaluations"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Score)
+        @Html.TextBoxFor(m => m.Score, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Score)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.GroupId)
+        @Html.DropDownListFor(m => m.GroupId, new SelectList(Model.Groups, "Id", "Name"), "Select Group", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.GroupId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.StudentId)
+        @Html.DropDownListFor(m => m.StudentId, new SelectList(Model.Students, "Id", "StudentName" ), "Select Student Code", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.StudentId)
+    </div>
+    @Html.HiddenFor(m => m.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-info">Back to Evaluations' List</a>
+}
+@section Scripts
+{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+}

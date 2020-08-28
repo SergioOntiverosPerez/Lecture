@@ -14,16 +14,10 @@ namespace Lecture.Models
         [Display(Name = "Code")]
         public int StudentCode { get; set; }
 
-
         [Required(ErrorMessage ="Please enter student's name")]
         [StringLength(255)]
         [Display(Name = "Name")]
-        public string Name { get; set; }
-
-        [Required(ErrorMessage ="Please enter student's surname")]
-        [StringLength(255)]
-        [Display(Name = "Surname")]
-        public string Surname { get; set; }
+        public string StudentName { get; set; }
 
         [Required(ErrorMessage ="Please enter student's e-mail")]
         [Display(Name = "E-mail")]

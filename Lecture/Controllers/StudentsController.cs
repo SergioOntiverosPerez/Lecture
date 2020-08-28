@@ -24,17 +24,6 @@ namespace Lecture.Controllers
             return View();
         }
 
-        //public async Task<IActionResult> Index(string searchString)
-        //{
-        //    var students = from s in _context.Students.Include(s => s.Course)
-        //                   select s;
-
-        //    if (!String.IsNullOrEmpty(searchString))
-        //        students = students.Where(s => s.Name.Contains(searchString));
-
-        //    return View(await students.ToListAsync());
-        //}
-
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -98,8 +87,7 @@ namespace Lecture.Controllers
             {
                 var studentInDb = _context.Students.Single(s => s.Id == student.Id);
                 studentInDb.StudentCode = student.StudentCode;
-                studentInDb.Name = student.Name;
-                studentInDb.Surname = student.Surname;
+                studentInDb.StudentName = student.StudentName;
                 studentInDb.Email = student.Email;
                 studentInDb.CourseId = student.CourseId;
             }

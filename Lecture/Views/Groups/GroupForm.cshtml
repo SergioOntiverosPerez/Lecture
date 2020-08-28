@@ -10,26 +10,30 @@
 {
     <div class="form-group">
         @Html.LabelFor(m => m.GroupCode)
-        @Html.TextBoxFor( m => m.GroupCode, new { @class="form-control" })
+        @Html.TextBoxFor(m => m.GroupCode, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.GroupCode)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Name)
-        @Html.TextBoxFor(m => m.Name, new { @class="form-control", @placeholder="Enter group's name"})
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Enter group's name" })
         @Html.ValidationMessageFor(m => m.Name)
     </div>
     <div class="form-group">
-        @Html.LabelFor( m => m.SubjectId)
-        @Html.DropDownListFor( m => m.SubjectId, new SelectList(Model.Subjects, "Id", "Name"), "Select Subject", new { @class="form-control"})
+        @Html.LabelFor(m => m.SubjectId)
+        @Html.DropDownListFor(m => m.SubjectId, new SelectList(Model.Subjects, "Id", "Name"), "Select Subject", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.SubjectId)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.ProfessorId)
-        @Html.DropDownListFor( m => m.ProfessorId, new SelectList(Model.Professors, "Id", "Name"), "Select Professor", new { @class="form-control"})
+        @Html.DropDownListFor(m => m.ProfessorId, new SelectList(Model.Professors, "Id", "Name"), "Select Professor", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.ProfessorId)
     </div>
     @Html.HiddenFor(m => m.Id)
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
     <a asp-action="Index" class="btn btn-info">Back to Group's List</a>
+}
+@section Scripts
+{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 }
