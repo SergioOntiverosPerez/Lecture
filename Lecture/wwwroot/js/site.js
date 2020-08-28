@@ -30,12 +30,8 @@ function _displayProfessors(data) {
         td1.appendChild(textNode);
 
         let td2 = tr.insertCell(1);
-        let textNode2 = document.createTextNode(professor.surname);
+        let textNode2 = document.createTextNode(professor.email);
         td2.appendChild(textNode2);
-
-        let td3 = tr.insertCell(2);
-        let textNode3 = document.createTextNode(professor.email);
-        td3.appendChild(textNode3);
 
     });
     professors = data;
@@ -115,27 +111,24 @@ function _displayStudents(data) {
         td1.appendChild(textNode1);
 
         let td2 = tr.insertCell(1);
-        let textNode2 = document.createTextNode(student.name);
+        let textNode2 = document.createTextNode(student.studentName);
         td2.appendChild(textNode2);
 
         let td3 = tr.insertCell(2);
-        let textNode3 = document.createTextNode(student.surname);
+        let textNode3 = document.createTextNode(student.email);
         td3.appendChild(textNode3);
 
         let td4 = tr.insertCell(3);
-        let textNode4 = document.createTextNode(student.email);
+        let textNode4 = document.createTextNode(student.course.name);
         td4.appendChild(textNode4);
 
         let td5 = tr.insertCell(4);
-        let textNode5 = document.createTextNode(student.course.name);
-        td5.appendChild(textNode5);
+        td5.appendChild(editButton);
 
         let td6 = tr.insertCell(5);
-        td6.appendChild(editButton);
-
-        let td7 = tr.insertCell(6);
-        td7.appendChild(deleteButton);
-    }) 
+        td6.appendChild(deleteButton);
+    });
+    students = data;
 }
 function SearchStudent() {
     var input, filter, table, tr, td, i, textValue;

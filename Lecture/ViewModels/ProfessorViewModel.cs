@@ -16,11 +16,6 @@ namespace Lecture.ViewModels
         [Display(Name = "Professor's name")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Please enter professor's surname")]
-        [StringLength(255)]
-        [Display(Name = "Professor's surname")]
-        public string Surname { get; set; }
-
         [Required(ErrorMessage = "Please enter professor's degree")]
         [Display(Name = "Professor's degree")]
         public DegreeTypes Degree { get; set; }
@@ -49,7 +44,6 @@ namespace Lecture.ViewModels
         {
             Id = professor.Id;
             Name = professor.Name;
-            Surname = professor.Surname;
             Degree = professor.Degree;
             Email = professor.Email;
             Birthdate = professor.Birthdate;

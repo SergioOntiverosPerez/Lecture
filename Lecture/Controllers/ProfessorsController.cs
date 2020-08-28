@@ -90,7 +90,6 @@ namespace Lecture.Controllers
             {
                 var professorInDb = _context.Professors.Single(p => p.Id == professor.Id);
                 professorInDb.Name = professor.Name;
-                professorInDb.Surname = professor.Surname;
                 professorInDb.Degree = professor.Degree;
                 professorInDb.Email = professor.Email;
                 professorInDb.Birthdate = professor.Birthdate;

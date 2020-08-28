@@ -56,7 +56,6 @@ namespace Lecture.Controllers.Api
             var professor = new Professor
             {
                 Name = professorDto.Name,
-                Surname = professorDto.Surname,
                 Email = professorDto.Email
             };
 
@@ -80,7 +79,6 @@ namespace Lecture.Controllers.Api
                 return NotFound();
 
             professorInDb.Name = professorDto.Name;
-            professorInDb.Surname = professorDto.Surname;
             professorInDb.Email = professorDto.Email;
 
             try
@@ -114,7 +112,6 @@ namespace Lecture.Controllers.Api
             {
                 Id = professor.Id,
                 Name = professor.Name,
-                Surname = professor.Surname,
                 Email = professor.Email
             };
     }
