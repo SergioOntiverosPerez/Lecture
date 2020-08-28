@@ -23,7 +23,6 @@ namespace Lecture.Models
         [Display(Name = "E-mail")]
         public string Email { get; set; }
 
-        
         public Course Course { get; set; }
 
         [Display(Name = "Course")]
