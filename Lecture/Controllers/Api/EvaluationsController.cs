@@ -23,23 +23,22 @@ namespace Lecture.Controllers.Api
 
         public async Task<ActionResult<IEnumerable<Evaluation>>> GetEvaluations()
         {
-            return await _context.Evaluations.Include(ev => ev.Group).ToListAsync();
+            return await _context.Evaluations
+                .Include(ev => ev.Group)
+                .Include(ev => ev.Student)
+                .ToListAsync();
         }
 
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<Evaluation>> GetEvaluation(int id)
-        //{
-        //    var evaluation = await _context.Evaluations.SingleAsync(ev => ev.Id == id);
-
-        //    return evaluation;
-        //}
-
         [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<Evaluation>>> GetEvalByGroup(int id)
+        public async Task<ActionResult<Evaluation>> GetEvalByGroup(int id)
         {
-            var evaluations = await _context.Evaluations.Include(ev => ev.GroupId == id).ToListAsync();
+            return await _context.Evaluations
+                .Include(ev => ev.Group.Professor)
+                .Include(ev => ev.Group.Subject)
+                .Include(ev => ev.Student.Course)
+                .SingleAsync(ev => ev.Id == id);
 
-            return evaluations;
+            
         }
     }
 }

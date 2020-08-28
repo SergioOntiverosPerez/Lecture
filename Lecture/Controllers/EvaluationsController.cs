@@ -19,7 +19,7 @@ namespace Lecture.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult List()
         {
             return View();
         }
@@ -67,7 +67,7 @@ namespace Lecture.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Evaluations");
+            return RedirectToAction("List", "Evaluations");
         }
     }
 }
