@@ -96,6 +96,13 @@ function _displayStudents(data) {
         let urlParam = window.location.origin + "/students/edit/" + student.id;
         editButton.setAttribute('href', urlParam);
 
+        let detailsButton = a.cloneNode(false);
+        detailsButton.innerText = 'Details';
+        detailsButton.classList.add('btn');
+        detailsButton.classList.add('btn-info');
+        let urlDetails = window.location.origin + "/students/details/" + student.id;
+        detailsButton.setAttribute('href', urlDetails);
+
 
         let deleteButton = button.cloneNode(false);
         deleteButton.innerText = 'Delete';
@@ -126,7 +133,10 @@ function _displayStudents(data) {
         td5.appendChild(editButton);
 
         let td6 = tr.insertCell(5);
-        td6.appendChild(deleteButton);
+        td6.appendChild(detailsButton);
+
+        let td7 = tr.insertCell(6);
+        td7.appendChild(deleteButton);
     });
     students = data;
 }

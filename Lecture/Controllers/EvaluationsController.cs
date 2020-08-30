@@ -24,6 +24,24 @@ namespace Lecture.Controllers
             return View();
         }
 
+
+        public IActionResult Edit(int id)
+        {
+            var eval = _context.Evaluations.SingleOrDefault(e => e.Id == id);
+
+            if (eval == null)
+                return NotFound();
+
+            var viewModel = new EvaluationViewModel(eval)
+            {
+                Groups = _context.Groups.ToList(),
+                Students = _context.Students.ToList()
+            };
+
+            return View("EvaluationForm", viewModel);
+        }
+
+
         public IActionResult New()
         {
             var students = _context.Students.ToList();

@@ -37,8 +37,21 @@ namespace Lecture.Controllers.Api
                 .Include(ev => ev.Group.Subject)
                 .Include(ev => ev.Student.Course)
                 .SingleAsync(ev => ev.Id == id);
+        }
 
-            
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteEvaluation(int id)
+        {
+            var eval = await _context.Evaluations.FindAsync(id);
+
+            if (eval == null)
+                return NotFound();
+
+            _context.Evaluations.Remove(eval);
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
     }
 }

@@ -94,5 +94,36 @@ function _displayEvaluations(data) {
     });
 
     evaluations = data;
-    
+}
+
+function SearchEvaluationsByStudent() {
+    var input, filter, table, tr, td, i, textValue;
+    var cont = 0;
+    input = document.getElementById("searchEval");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("evaluationTable");
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+
+        if (td) {
+            textValue = td.textContent || td.innerText
+
+            if (textValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                cont++;
+                _displayCount(cont);
+            } else {
+                tr[i].style.display = "none";
+                _displayCount(cont);
+            }
+        }
+    }
+}
+
+function NewEvaluation(){
+    const a = document.getElementById("newEvaluation");
+    const urlNewEval = window.location.origin + "/evaluations/new";
+    a.setAttribute('href', urlNewEval);
 }
