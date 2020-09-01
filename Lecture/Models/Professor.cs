@@ -20,6 +20,7 @@ namespace Lecture.Models
         public DegreeTypes Degree { get; set; }
         
         [Required(ErrorMessage ="Please enter professor's e-mail")]
+        [StringLength(255)]
         [Display(Name = "Professor's e-mail")]
         public string Email { get; set; }
 

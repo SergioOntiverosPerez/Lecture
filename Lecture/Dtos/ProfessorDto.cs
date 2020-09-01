@@ -15,11 +15,8 @@ namespace Lecture.Dtos
         [StringLength(255)]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Please enter professor's surname")]
-        [StringLength(255)]
-        public string Surname { get; set; }
-
         [Required(ErrorMessage = "Please enter professor's e-mail")]
+        [StringLength(255)]
         public string Email { get; set; }
     }
 }
